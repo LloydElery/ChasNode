@@ -1,10 +1,5 @@
-import { Router } from "express";
-
-const bookRouter = Router();
-
-// Hämta böcker
-bookRouter.get("/", (req, res) => {
-  res.json({
+export const getAllBooks = (req: Request, res: any) => {
+  res.send({
     totalBooks: 2,
     books: [
       {
@@ -19,6 +14,4 @@ bookRouter.get("/", (req, res) => {
       },
     ],
   });
-});
-
-export default bookRouter;
+};

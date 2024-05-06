@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [user, setUser]: any = useState(null);
+  const [books, setBooks]: any = useState(null);
   const [id, setId]: any = useState(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -13,13 +14,16 @@ function App() {
     setUser(result);
   };
 
-  const findUserById = () => {
-    const userSearch = inputRef.current!.value;
-    setId(userSearch);
+  const getBooks = async () => {
+    const url = "http://localhost:3000/books";
+    const response = await fetch(url);
+    const result = await response.json();
+    setBooks(result);
   };
 
   useEffect(() => {
     findUser();
+    getBooks();
   }, []);
 
   return (
@@ -43,6 +47,21 @@ function App() {
             <p>{user.id}</p>
           </div>
         )}
+      </div>
+      <div>
+        <h2>Book Listing</h2>
+        {books &&
+          books.books.map((book: any, id: number) => {
+            return (
+              <>
+                <article>
+                  <h3>{book.title}</h3>
+                  <p>{book.author}</p>
+                  <p>{book.pages}</p>
+                </article>
+              </>
+            );
+          })}
       </div>
     </>
   );
