@@ -1,6 +1,7 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
+import bookRouter from "./books/books";
 
 const app: Express = express();
 
@@ -20,6 +21,8 @@ const people = [
 ];
 
 app.use(cors());
+
+app.use("/books", bookRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
