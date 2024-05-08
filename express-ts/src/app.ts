@@ -2,8 +2,12 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import bookRouter from "./books/books";
+import connectDB from "./db/db";
 
 const app: Express = express();
+
+// Koppling mot MognoDB
+connectDB;
 
 const people = [
   { user: "Dennis", id: 1 },
