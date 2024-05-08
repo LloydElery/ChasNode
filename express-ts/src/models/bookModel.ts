@@ -1,5 +1,5 @@
 import { IBook } from "../interfaces/IBook";
-import { Schema, model, models } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const bookSchema = new Schema<IBook>({
   title: { type: String, required: true },
@@ -9,3 +9,5 @@ const bookSchema = new Schema<IBook>({
 });
 
 const Book = model<IBook>("Book", bookSchema);
+
+export default Book;
