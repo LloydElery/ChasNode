@@ -12,7 +12,11 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  // om vi får ett meddelande med key = "chat message"
+  // Då tar vi värdet (msg) och skriver ut det
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg);
+  });
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
